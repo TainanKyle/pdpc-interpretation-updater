@@ -1,0 +1,9 @@
+# Pinned exactly: core.py monkey-patches openpyxl internals (the whitespace()
+# helper, see core.py) -- a version bump could silently break the patch and
+# reintroduce the corrupt-workbook bug. Re-test before upgrading.
+requests==2.34.2
+openpyxl==3.1.5
+# Makes requests validate against the OS certificate store, so a company's
+# TLS-inspecting proxy (private root CA installed by IT) does not break the
+# scrape. Optional at runtime -- core.py degrades gracefully if absent.
+truststore==0.10.4

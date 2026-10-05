@@ -1,0 +1,16 @@
+.DS_Store
+venv/
+build/
+dist/
+dist-windows/
+*.spec
+__pycache__/
+*.pyc
+*.bak.*.xlsx
+work_copy.xlsx
+test.xlsx
+~$*.xlsx
+# Real user data living in the working dir -- never commit
+備份/
+_個資法條文及相關解釋.xlsx
+.claude/
