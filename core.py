@@ -2,11 +2,9 @@
 """
 PDPC administrative interpretation updater -- shared core logic.
 
-This module has NO GUI dependency, so it can be reused by both:
-  - app.py            (the desktop window that gets packaged into an executable)
-  - a future Google Colab notebook
-When switching delivery modes you only swap the outer shell (how files come in /
-out and how the run is triggered); this file stays unchanged.
+This module has NO GUI dependency: app.py (the desktop window that gets
+packaged into an executable) is only a thin shell around it, and `python core.py`
+runs a quick command-line check of the scraper.
 
 Public functions:
   scrape_all(progress=None) -> list[dict]
@@ -186,7 +184,7 @@ _TAG_RE = re.compile(r"<[^>]+>")
 # Small helpers
 # ---------------------------------------------------------------------------
 def _log(progress, msg):
-    """Forward a progress message to the shell (GUI / Colab). No-op if None."""
+    """Forward a progress message to the shell (GUI / CLI). No-op if None."""
     if progress:
         try:
             progress(msg)
@@ -631,7 +629,7 @@ def _assign_text(cell, value):
 def load_workbook_from(excel):
     """
     Load an openpyxl workbook from a path string or a file-like object.
-    (Lets the desktop path and a Colab uploaded file share one entry point.)
+    (Lets a file path and an in-memory upload share one entry point.)
     Returns (workbook, original_bytes).
 
     rich_text=True so that red highlights written on a previous run survive a
@@ -665,10 +663,10 @@ def is_excel_locked(path):
 
     Reading (dry-run) is unaffected on either platform, so this only matters for
     the write-back step. Note: a stale "~$" file left by an Excel crash can cause
-    a false positive; the user can delete it. File-like inputs (Colab) can't be
+    a false positive; the user can delete it. File-like inputs (in-memory) can't be
     locked, so they always return False.
     """
-    if hasattr(path, "read"):          # file-like (e.g. Colab upload)
+    if hasattr(path, "read"):          # file-like (e.g. in-memory upload)
         return False
     try:
         folder, name = os.path.split(path)

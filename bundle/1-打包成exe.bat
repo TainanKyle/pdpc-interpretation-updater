@@ -43,7 +43,8 @@ exit /b 0
 echo.
 echo ==============================================
 echo   發生錯誤，打包未完成。
-echo   請把上面的訊息截圖傳給提供工具的人。
+echo   請把上面的訊息截圖，到 GitHub 開 issue 回報：
+echo   https://github.com/TainanKyle/pdpc-interpretation-updater/issues
 echo   （替代方案：改雙擊「2-直接執行.bat」，
 echo     不需打包也能使用。）
 echo ==============================================

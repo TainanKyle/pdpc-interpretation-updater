@@ -36,6 +36,7 @@ exit /b 0
 
 :fail
 echo.
-echo 發生錯誤。請把上面的訊息截圖傳給提供工具的人。
+echo 發生錯誤。請把上面的訊息截圖，到 GitHub 開 issue 回報：
+echo https://github.com/TainanKyle/pdpc-interpretation-updater/issues
 pause
 exit /b 1

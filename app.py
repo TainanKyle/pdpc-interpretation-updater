@@ -7,8 +7,8 @@ This is only the GUI shell around core.py. It lets a non-technical user:
   2. preview the detected columns,
   3. run a dry-run (compare only) or a real update (write back, with backup).
 
-All scraping/comparison logic lives in core.py and is reused unchanged by the
-future Colab notebook. Keeping this file thin is what makes that swap easy.
+All scraping/comparison logic lives in core.py; keeping this file thin keeps
+the GUI easy to replace.
 
 User-facing labels are in Chinese for the (Chinese-speaking) end users; code
 comments and log lines are in English.
@@ -25,8 +25,8 @@ from tkinter import filedialog, messagebox, scrolledtext, ttk
 import core
 
 APP_TITLE = "個資法行政函釋更新工具"
-# Bump on every delivered build -- the footer is the only way a user (or you,
-# from a screenshot) can tell which build they are actually running.
+# Bump on every release -- the footer shows it, so a screenshot tells which
+# build a user is actually running.
 #   1.0  first release
 #   1.1  company-network TLS support (OS certificate store); .xlsx only;
 #        atomic write-back; scraped text can no longer become an Excel formula
